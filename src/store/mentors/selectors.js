@@ -1,1 +1,2 @@
-export const selectMentorById = (id) => (state) => state.mentors.filter((mentor) => mentor.id === id);
+export const selectMentorById = (id) => (state) =>
+  state.mentors.filter((mentor) => mentor.id === id);

@@ -1,13 +1,11 @@
-import {
-  takeLatest, put, call,
-} from "redux-saga/effects";
+import { takeLatest, put, call } from 'redux-saga/effects';
 
-import { ADD_MENTOR, INIT_MENTORS } from "./constants";
-import { initMentorsSuccess, addMentorSuccess } from "./actions";
-import { firebaseService } from "../../services/firebaseService";
+import { ADD_MENTOR, INIT_MENTORS } from './constants';
+import { initMentorsSuccess, addMentorSuccess } from './actions';
+import { firebaseService } from '../../services/firebaseService';
 
 function* initMentorsSaga() {
-  const snapshot = yield call(firebaseService.get, "mentors");
+  const snapshot = yield call(firebaseService.get, 'mentors');
   let mentors = [];
   snapshot.forEach((user) => {
     mentors = [...mentors, { id: user.id, ...user.data() }];
@@ -16,7 +14,7 @@ function* initMentorsSaga() {
 }
 
 function* addMentorSaga({ payload }) {
-  yield call(firebaseService.add, "mentors", payload.mentor);
+  yield call(firebaseService.add, 'mentors', payload.mentor);
   yield put(addMentorSuccess(payload.mentor));
 }
 

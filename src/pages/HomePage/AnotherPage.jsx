@@ -1,7 +1,3 @@
-import React from "react";
+import React from 'react';
 
-export const AnotherPage = () => (
-    <div>
-      Another Page
-    </div>
-);
+export const AnotherPage = () => <div>Another Page</div>;

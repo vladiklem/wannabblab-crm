@@ -1,4 +1,8 @@
-import { INIT_PAYMENTS_SUCCESS, ADD_PAYMENT, ADD_PAYMENT_SUCCESS } from "./constants";
+import {
+  INIT_PAYMENTS_SUCCESS,
+  ADD_PAYMENT,
+  ADD_PAYMENT_SUCCESS,
+} from './constants';
 
 export const initPaymentsSuccess = (payments) => ({
   type: INIT_PAYMENTS_SUCCESS,

@@ -1,6 +1,9 @@
 import {
-  INIT_MENTORS, ADD_MENTOR, INIT_MENTORS_SUCCESS, ADD_MENTOR_SUCCESS,
-} from "./constants";
+  INIT_MENTORS,
+  ADD_MENTOR,
+  INIT_MENTORS_SUCCESS,
+  ADD_MENTOR_SUCCESS,
+} from './constants';
 
 export const initMentors = () => ({
   type: INIT_MENTORS,

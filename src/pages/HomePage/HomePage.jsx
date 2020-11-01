@@ -1,31 +1,25 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { Tabs, Row, Col, Statistic } from 'antd';
+
+import { firebaseService } from '../../services/firebaseService';
+
 import {
-  Tabs, Row, Col, Statistic,
-} from "antd";
-
-import { firebaseService } from "../../services/firebaseService";
-
-import { initClients } from "../../store/leads/actions";
-import { initMentors } from "../../store/mentors/actions";
-import { initGroups } from "../../store/groups/actions";
-import { MentorsPanel } from "../../components/TabPanels/MentorsPanel/MentorsPanel";
-import { LeadsPanel } from "../../components/TabPanels/LeadsPanel/LeadsPanel";
-import { GroupsPanel } from "../../components/TabPanels/GroupsPanel/GroupsPanel";
+  MentorsPanel,
+} from '../../components/TabPanels/MentorsPanel/MentorsPanel';
+import {
+  LeadsPanel,
+} from '../../components/TabPanels/LeadsPanel/LeadsPanel';
+import {
+  GroupsPanel,
+} from '../../components/TabPanels/GroupsPanel/GroupsPanel';
 
 const { TabPane } = Tabs;
 
 firebaseService.init();
 
 export const HomePage = () => {
-  const dispatch = useDispatch();
   const { initialSum } = useSelector((state) => state.budget);
-
-  useEffect(() => {
-    dispatch(initClients());
-    dispatch(initGroups());
-    dispatch(initMentors());
-  }, []);
 
   return (
     <div>

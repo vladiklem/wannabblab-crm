@@ -1,6 +1,9 @@
 import {
-  INIT_GROUPS, ADD_GROUP, INIT_GROUPS_SUCCESS, ADD_GROUP_SUCCESS,
-} from "./constants";
+  INIT_GROUPS,
+  ADD_GROUP,
+  INIT_GROUPS_SUCCESS,
+  ADD_GROUP_SUCCESS,
+} from './constants';
 
 export const initGroups = () => ({
   type: INIT_GROUPS,
