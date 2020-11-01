@@ -69,7 +69,7 @@ export const LeadsPanel = () => {
     setIsFormVisible((visible) => !visible);
   }, [setIsFormVisible, setForm, getClient]);
 
-  const { fullName, phoneNumber, description } = form;
+  const { fullName, phoneNumber, description, source, level, goal, work, status } = form;
 
   return (
     <>
@@ -138,7 +138,7 @@ export const LeadsPanel = () => {
           </Form.Item>
           <Form.Item label="який статус?">
             <Select
-              defaultValue={statusTypes.NEW}
+              defaultValue={status}
               onChange={onSelectChange.status}
             >
               {Object.keys(statusTypes).map((key) => (
@@ -150,7 +150,7 @@ export const LeadsPanel = () => {
           </Form.Item>
           <Form.Item label="де підібрали?">
             <Select
-              defaultValue={sourceTypes.FACEBOOK}
+              defaultValue={source}
               onChange={onSelectChange.source}
             >
               {Object.keys(sourceTypes).map((key) => (
@@ -162,7 +162,7 @@ export const LeadsPanel = () => {
           </Form.Item>
           <Form.Item label="шо по рівню?">
             <Select
-              defaultValue={engLevelTypes.UNKNOWN}
+              defaultValue={level}
               onChange={onSelectChange.level}
             >
               {Object.keys(engLevelTypes).map((key) => (
@@ -174,7 +174,7 @@ export const LeadsPanel = () => {
           </Form.Item>
           <Form.Item label="нашо англ?">
             <Select
-              defaultValue={goalTypes.UNKNOWN}
+              defaultValue={goal}
               onChange={onSelectChange.goal}
             >
               {Object.keys(goalTypes).map((key) => (
@@ -186,7 +186,7 @@ export const LeadsPanel = () => {
           </Form.Item>
           <Form.Item label="де працює?">
             <Select
-              defaultValue={workTypes.UNKNOWN}
+              defaultValue={work}
               onChange={onSelectChange.work}
             >
               {Object.keys(workTypes).map((key) => (

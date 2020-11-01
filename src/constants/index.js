@@ -10,8 +10,9 @@ export const engLevelTypes = {
 };
 
 export const sourceTypes = {
-  FACEBOOK: 'фейсбук',
-  INSTAGRAM: 'инста',
+  FACEBOOKAD: 'реклама в фб',
+  INSTAGRAMAD: 'реклама в інcті',
+  INSTAGRAMDM: 'дірект інсти',
   RECOMMEND: 'рекомендація',
   RELATIVE: 'родствєннік',
 };
@@ -40,7 +41,7 @@ export const goalTypes = {
   RELOCATE: 'хоче жити за граніцой',
   WORK: 'для роботи',
   SELF: 'для себе',
-  STUDY: 'навчання',
+  STUDY: 'для навчання',
   UNKNOWN: 'невідомо',
 };
 
@@ -62,8 +63,8 @@ export const PaymentTarget = {
 export const initialClient = {
   fullName: '',
   phoneNumber: '',
-  level: engLevelTypes.B1,
-  source: 'FACEBOOK',
+  level: 'UNKNOWN',
+  source: 'FACEBOOKAD',
   work: 'UNKNOWN',
   instagram: '',
   status: 'NEW',
