@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { Form, Input, Button, Select, Modal, Card, Tag } from 'antd';
+import { Form, Input, Button, Select, Modal, Card, Tag, Checkbox } from 'antd';
 import { EditOutlined } from '@ant-design/icons';
 
 import { addClient, updateClient } from '../../../store/clients/actions';
@@ -28,8 +28,8 @@ export const LeadsPanel = () => {
 
   const onFormChange = useCallback(
     (event) => {
-      const { name, value } = event.target;
-      setForm((data) => ({ ...data, [name]: value }));
+      const { name, value, checked } = event.target;
+      setForm((data) => ({ ...data, [name]: value || checked }));
     },
     [setForm],
   );
@@ -69,7 +69,7 @@ export const LeadsPanel = () => {
     setIsFormVisible((visible) => !visible);
   }, [setIsFormVisible, setForm, getClient]);
 
-  const { fullName, phoneNumber, description, source, level, goal, work, status } = form;
+  const { fullName, phoneNumber, description, source, level, goal, work, status, callback, callbackDate } = form;
 
   return (
     <>
@@ -90,6 +90,8 @@ export const LeadsPanel = () => {
               work: w,
               instagram: i,
               goal: g,
+              callback: cb,
+              callbackDate: cbd,
             }) => (
               <div key={id} style={{ padding: 32, width: '50%' }}>
                 <Card actions={[<EditOutlined onClick={() => onEditClick(id)} />]} title={fN} extra={<b>{statusTypes[st]}</b>}>
@@ -102,7 +104,8 @@ export const LeadsPanel = () => {
                   <p>{`Ціль: ${goalTypes[g]}`}</p>
                   <p>{`Звідкии прийшов: ${sourceTypes[s]}`}</p>
                   <p>{`Де працює: ${workTypes[w]}`}</p>
-                  <p>{`Опис: ${d}`}</p>
+                  {cb && <h4>{`ПЕРЕТЕЛЕФОНУВАТИ - ${cbd}`}</h4>}
+                  {!!d && <p>{`Опис: ${d}`}</p>}
                 </Card>
               </div>
             ),
@@ -196,6 +199,14 @@ export const LeadsPanel = () => {
               ))}
             </Select>
           </Form.Item>
+          <Form.Item label="колл бэк?">
+            <Checkbox name="callback" checked={callback} onChange={onFormChange} />
+          </Form.Item>
+          {callback && (
+          <Form.Item label="дата коллбэку">
+            <Input id="callbackDate" name="callbackDate" value={callbackDate} type="date" onChange={onFormChange} />
+          </Form.Item>
+          )}
           <Form.Item label="ессе">
             <Input.TextArea
               placeholder="бест оф зе бест"

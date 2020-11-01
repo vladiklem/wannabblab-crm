@@ -69,6 +69,8 @@ export const initialClient = {
   instagram: '',
   status: 'NEW',
   goal: 'UNKNOWN',
+  callback: false,
+  callbackDate: '',
   description: '',
 };
 
