@@ -56,22 +56,34 @@ export const LeadsPanel = () => {
     setIsFormVisible(false);
   }, [isEditing, setForm, dispatch, form]);
 
-  const onAddClick = useCallback(
-    () => {
+  const onAddClick = useCallback(() => {
+    setIsFormVisible((visible) => !visible);
+    setForm(initialClient);
+  }, [setForm, setIsFormVisible]);
+
+  const onEditClick = useCallback(
+    (id) => {
+      const client = getClient(id);
+      setIsEditing(true);
+      setForm(client);
       setIsFormVisible((visible) => !visible);
-      setForm(initialClient);
     },
-    [setForm, setIsFormVisible],
+    [setIsFormVisible, setForm, getClient]
   );
 
-  const onEditClick = useCallback((id) => {
-    const client = getClient(id);
-    setIsEditing(true);
-    setForm(client);
-    setIsFormVisible((visible) => !visible);
-  }, [setIsFormVisible, setForm, getClient]);
-
-  const { fullName, phoneNumber, description, source, level, goal, work, status, callback, callbackDate } = form;
+  const {
+    fullName,
+    phoneNumber,
+    description,
+    source,
+    level,
+    goal,
+    work,
+    status,
+    callback,
+    callbackDate,
+    instagram,
+  } = form;
 
   return (
     <>
@@ -96,7 +108,11 @@ export const LeadsPanel = () => {
               callbackDate: cbd,
             }) => (
               <div key={id} style={{ padding: 32, width: '50%' }}>
-                <Card actions={[<EditOutlined onClick={() => onEditClick(id)} />]} title={fN} extra={<b>{statusTypes[st]}</b>}>
+                <Card
+                  actions={[<EditOutlined onClick={() => onEditClick(id)} />]}
+                  title={fN}
+                  extra={<b>{statusTypes[st]}</b>}
+                >
                   {!!pn && <p>{`Tel: ${pn}`}</p>}
                   {!!i && <p>{`інст: ${i}`}</p>}
                   <p>
@@ -110,7 +126,7 @@ export const LeadsPanel = () => {
                   {!!d && <p>{`Опис: ${d}`}</p>}
                 </Card>
               </div>
-            ),
+            )
           )}
       </div>
       <Modal
@@ -141,11 +157,16 @@ export const LeadsPanel = () => {
               onChange={onFormChange}
             />
           </Form.Item>
+          <Form.Item label="instagram">
+            <Input
+              placeholder="wannablab.eng"
+              name="instagram"
+              value={instagram}
+              onChange={onFormChange}
+            />
+          </Form.Item>
           <Form.Item label="який статус?">
-            <Select
-              defaultValue={status}
-              onChange={onSelectChange.status}
-            >
+            <Select defaultValue={status} onChange={onSelectChange.status}>
               {Object.keys(statusTypes).map((key) => (
                 <Option key={key} value={key}>
                   {statusTypes[key]}
@@ -154,10 +175,7 @@ export const LeadsPanel = () => {
             </Select>
           </Form.Item>
           <Form.Item label="де підібрали?">
-            <Select
-              defaultValue={source}
-              onChange={onSelectChange.source}
-            >
+            <Select defaultValue={source} onChange={onSelectChange.source}>
               {Object.keys(sourceTypes).map((key) => (
                 <Option key={key} value={key}>
                   {sourceTypes[key]}
@@ -166,10 +184,7 @@ export const LeadsPanel = () => {
             </Select>
           </Form.Item>
           <Form.Item label="шо по рівню?">
-            <Select
-              defaultValue={level}
-              onChange={onSelectChange.level}
-            >
+            <Select defaultValue={level} onChange={onSelectChange.level}>
               {Object.keys(engLevelTypes).map((key) => (
                 <Option key={key} value={key}>
                   {engLevelTypes[key]}
@@ -178,10 +193,7 @@ export const LeadsPanel = () => {
             </Select>
           </Form.Item>
           <Form.Item label="нашо англ?">
-            <Select
-              defaultValue={goal}
-              onChange={onSelectChange.goal}
-            >
+            <Select defaultValue={goal} onChange={onSelectChange.goal}>
               {Object.keys(goalTypes).map((key) => (
                 <Option key={key} value={key}>
                   {goalTypes[key]}
@@ -190,10 +202,7 @@ export const LeadsPanel = () => {
             </Select>
           </Form.Item>
           <Form.Item label="де працює?">
-            <Select
-              defaultValue={work}
-              onChange={onSelectChange.work}
-            >
+            <Select defaultValue={work} onChange={onSelectChange.work}>
               {Object.keys(workTypes).map((key) => (
                 <Option key={key} value={key}>
                   {workTypes[key]}
@@ -202,12 +211,22 @@ export const LeadsPanel = () => {
             </Select>
           </Form.Item>
           <Form.Item label="колл бэк?">
-            <Checkbox name="callback" checked={callback} onChange={onFormChange} />
+            <Checkbox
+              name="callback"
+              checked={callback}
+              onChange={onFormChange}
+            />
           </Form.Item>
           {callback && (
-          <Form.Item label="дата коллбэку">
-            <Input id="callbackDate" name="callbackDate" value={callbackDate} type="date" onChange={onFormChange} />
-          </Form.Item>
+            <Form.Item label="дата коллбэку">
+              <Input
+                id="callbackDate"
+                name="callbackDate"
+                value={callbackDate}
+                type="date"
+                onChange={onFormChange}
+              />
+            </Form.Item>
           )}
           <Form.Item label="ессе">
             <Input.TextArea
