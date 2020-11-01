@@ -23,6 +23,8 @@ export const LeadsPanel = () => {
   const [isFormVisible, setIsFormVisible] = useState(false);
   const clients = useSelector((state) => state.clients);
 
+  console.log(form);
+
   const getClient = useCallback((id) =>
     clients.find((client) => client.id === id), [clients]);
 
