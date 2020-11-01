@@ -23,8 +23,6 @@ export const LeadsPanel = () => {
   const [isFormVisible, setIsFormVisible] = useState(false);
   const clients = useSelector((state) => state.clients);
 
-  console.log(form);
-
   const getClient = useCallback((id) =>
     clients.find((client) => client.id === id), [clients]);
 
@@ -68,7 +66,7 @@ export const LeadsPanel = () => {
       setForm(client);
       setIsFormVisible((visible) => !visible);
     },
-    [setIsFormVisible, setForm, getClient]
+    [setIsFormVisible, setForm, getClient],
   );
 
   const {
@@ -126,7 +124,7 @@ export const LeadsPanel = () => {
                   {!!d && <p>{`Опис: ${d}`}</p>}
                 </Card>
               </div>
-            )
+            ),
           )}
       </div>
       <Modal
