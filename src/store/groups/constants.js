@@ -1,0 +1,7 @@
+export const INIT_GROUPS = "INIT_GROUPS";
+
+export const INIT_GROUPS_SUCCESS = "INIT_GROUPS_SUCCESS";
+
+export const ADD_GROUP = "ADD_GROUP";
+
+export const ADD_GROUP_SUCCESS = "ADD_GROUP_SUCCESS";

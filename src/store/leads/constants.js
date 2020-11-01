@@ -1,0 +1,15 @@
+export const INIT_CLIENTS = "INIT_CLIENTS";
+
+export const INIT_CLIENTS_SUCCESS = "INIT_CLIENTS_SUCCESS";
+
+export const ADD_CLIENT = "ADD_CLIENT";
+
+export const ADD_CLIENT_SUCCESS = "ADD_CLIENT_SUCCESS";
+
+export const INIT_LEADS = "INIT_LEADS";
+
+export const INIT_LEADS_SUCCESS = "INIT_LEADS_SUCCESS";
+
+export const ADD_LEAD = "ADD_LEAD";
+
+export const ADD_LEAD_SUCCESS = "ADD_LEAD_SUCCESS";
